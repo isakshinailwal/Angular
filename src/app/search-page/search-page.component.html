@@ -1,0 +1,23 @@
+<div class="container mt-3">
+    <form>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" #box (keyup.enter)="Search(box.value)" placeholder="Search Movie Name" aria-label="Enter Movie Name" aria-describedby="button-addon2">
+            <button class="btn btn-primary" type="submit" id="button-addon2" (click)="Search(box.value)">Search</button>
+          </div>
+        </form>
+        
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-4" *ngFor="let Movie of Movies" >
+            <div class="card mb-4 box-shadow rounded-0"><img class="card-img-top w-100 d-block rounded-0" src="https://image.tmdb.org/t/p/w500/{{Movie.poster_path}}" />
+                <div class="card-body">
+                    <h4 class="card-title">{{Movie.original_title}}</h4>
+                    <h6 class="text-muted card-subtitle mb-2"><i class="fa fa-star"></i> Rating {{Movie.vote_average}} / 10</h6>
+                    <p class="card-text">{{Movie.overview}}</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
