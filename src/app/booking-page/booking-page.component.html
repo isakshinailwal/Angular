@@ -1,0 +1,136 @@
+<div class="container border rounded border-secondary shadow-sm" style="margin-top: 22px;padding: 10px;">
+    <div class="row">
+        <div class="col"><div class="col"><img class="shadow" src="https://image.tmdb.org/t/p/w500/{{Movie.poster_path}}" /></div>
+    </div>
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 94px;">Name</th>
+                            <th>{{Movie.title}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{Movie.overview}}</td>
+                        </tr>
+                        <tr>
+                            <td>Available in</td>
+                            <td>
+                                <select (change)="GetCinemaListFromCity(CityList.value)" #CityList class="form-select" aria-label="Default select example">
+                                    <option selected>Select City</option>
+                                    <option *ngFor="let City of Cities">{{City}}</option>
+                                    
+                                  </select>
+                                  
+                            </td>
+                        </tr>
+                        <tr [hidden]="FilteredCinema.length==0">
+                            <td>Select Cinema</td>
+                            <td><select #Cinemas class="form-select" (change)="GetSlotListFromCinema(Cinemas.value)">
+                                <option selected [value]="">Select Cinema</option>
+                                <option *ngFor="let Cinema of FilteredCinema" [value]="Cinema._id">{{Cinema.cinemaName}}</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr [hidden]="FilteredSlots.length==0">
+                            <td>Select Slot</td>
+                            <td><select #SlotList class="form-select" (change)="GetSlotFromFilteredSlots(SlotList.value)">
+                                <option selected [value]="">Select Slot</option>
+                                <option class="text-dark" *ngFor="let slot of FilteredSlots" [value]="slot.slotTime">{{slot.slotTime + ' - '+ slot.screen}}</option>
+                            </select>
+                            </td>
+                        </tr>
+                        <tr [hidden]="SelectedSlot==null"><td>Date</td>
+                            <td>
+                                <div class="input-group">
+                            
+                                    <input #Date class="form-control" type="date">
+                                    <div class="input-group-append">
+                                        <button (click)="GetBookedTickets(Date.value)" class="btn btn-secondary" type="button"><strong>Get Seats</strong></button></div>
+                                </div>
+                              
+                            
+                            </td>
+                        </tr>
+                        <tr [hidden]="SelectedDate==null"><td></td>
+                        <td>
+                            <div class="table-responsive table-bordered" style="width: 225px;">
+                                <table class="table table-bordered table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Seats</th>
+                                            <th style="width: 32px;">1</th>
+                                            <th style="width: 32px;">2</th>
+                                            <th style="width: 32px;">3</th>
+                                            <th style="width: 32px;">4</th>
+                                            <th style="width: 32px;">5</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="cursor: pointer;">
+                                        <tr>
+                                            <td class="text-right">A</td>
+                                            <td id='A1' #A1 (click)="SelectSeat(A1)">A1</td>
+                                            <td id='A2' #A2 (click)="SelectSeat(A2)">A2</td>
+                                            <td id='A3' #A3 (click)="SelectSeat(A3)">A3</td>
+                                            <td id='A4' #A4 (click)="SelectSeat(A4)">A4</td>
+                                            <td id='A5' #A5 (click)="SelectSeat(A5)">A5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">B</td>
+                                            <td id="B1" #B1 (click)="SelectSeat(B1)">B1</td>
+                                            <td id="B2" #B2 (click)="SelectSeat(B2)">B2</td>
+                                            <td id="B3" #B3 (click)="SelectSeat(B3)">B3</td>
+                                            <td id="B4" #B4 (click)="SelectSeat(B4)">B4</td>
+                                            <td id="B5" #B5 (click)="SelectSeat(B5)">B5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">C</td>
+                                            <td id="C1" #C1 (click)="SelectSeat(C1)">C1</td>
+                                            <td id="C2" #C2 (click)="SelectSeat(C2)">C2</td>
+                                            <td id="C3" #C3 (click)="SelectSeat(C3)">C3</td>
+                                            <td id="C4" #C4 (click)="SelectSeat(C4)">C4</td>
+                                            <td id="C5" #C5 (click)="SelectSeat(C5)">C5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">D</td>
+                                            <td id="D1" #D1 (click)="SelectSeat(D1)">D1</td>
+                                            <td id="D2" #D2 (click)="SelectSeat(D2)">D2</td>
+                                            <td id="D3" #D3 (click)="SelectSeat(D3)">D3</td>
+                                            <td id="D4" #D4 (click)="SelectSeat(D4)">D4</td>
+                                            <td id="D5" #D5 (click)="SelectSeat(D5)">D5</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">E</td>
+                                            <td id="E1" #E1 (click)="SelectSeat(E1)">E1</td>
+                                            <td id="E2" #E2 (click)="SelectSeat(E2)">E2</td>
+                                            <td id="E3" #E3 (click)="SelectSeat(E3)">E3</td>
+                                            <td id="E4" #E4 (click)="SelectSeat(E4)">E4</td>
+                                            <td id="E5" #E5 (click)="SelectSeat(E5)">E5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <p>{{x}}</p>
+                           </td>
+                        </tr>
+                       
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="d-grid gap-2">
+                                    <button disabled [disabled]="(SelectedCinemaID==null) || SelectedSeats.length==0 || this.BookedSeats.length==25"  class="btn btn-primary btn-block" (click)="Book(Date.value)" type="button">Book Now</button>
+                                    
+                                  </div>
+                                
+                                </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

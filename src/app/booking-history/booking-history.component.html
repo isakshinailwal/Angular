@@ -1,0 +1,42 @@
+<div class="container d-xl-flex align-items-xl-center" style="margin-top: 20px;">
+    <h4 class="text-secondary flex-fill">My Booking History</h4>
+</div>
+<hr />
+<section style="min-height: 561px;">
+    <div class="container" style="margin-top: 15px;margin-bottom: 41px;">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Bookings</h5>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 61px;">Sn.</th>
+                            <th>Date</th>
+                            <th>Cinema</th>
+                            
+                            <th>Movie</th>
+                            <th>Slot</th>
+                            <th>Seats</th>
+                            <th style="width: 103px;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Booking of MyBookings; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{Booking.date}}</td>
+                            <td>{{Booking.cinema}}</td>
+                          
+                            <td>{{Booking.movieID}}</td>
+                            <td>{{Booking.slot}}</td>
+                            <td>{{Booking.seats}}</td>
+                            
+                            <td><button (click)="DeleteBooking(Booking._id)" class="btn btn-danger" type="button">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
